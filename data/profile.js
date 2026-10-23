@@ -11,7 +11,7 @@ const PROFILE = {
   institution: "University of Siegen",
   emails:   ["md.shajalal@uni-siegen.de", "shajalal@hstu.ac.bd"],
 
-  photo:   "images/photo.jpeg",   // e.g. "images/photo.jpeg"
+  photo:   "data/photo.jpeg",   // e.g. "images/photo.jpeg"
   cv:      "",   // e.g. "files/Md_Shajalal_CV.pdf"
   scholar: "",   // Google Scholar profile URL
   orcid:   "",
