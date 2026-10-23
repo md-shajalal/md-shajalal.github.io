@@ -162,3 +162,26 @@ footer{border-top:1px solid var(--line);padding:22px 0 36px;color:var(--muted);f
   main{padding-top:32px}
 }
 .intro{margin:-6px 0 16px;color:var(--muted)}
+
+/* =========================================================
+   JUSTIFIED TEXT
+   Paragraphs are justified on tablets and computers.
+   On phones the lines are too short, so justifying would
+   leave big gaps between words; there the text stays
+   left-aligned. Headings and titles always stay left-aligned.
+   To turn justification off, delete this block.
+   ========================================================= */
+@media (min-width:600px){
+  .prose p,
+  .project p,
+  .callout p,
+  #news .what p,
+  .dated .what .sub,
+  .plain li .sub,
+  .pub .authors,
+  .pub .venue{
+    text-align:justify;
+    hyphens:auto;
+    -webkit-hyphens:auto;
+  }
+}
