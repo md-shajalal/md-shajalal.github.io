@@ -1,0 +1,72 @@
+/* =========================================================
+   PUBLICATIONS
+   Add a new paper by copying one line and changing the text.
+
+   type:   "journal" | "conference" | "chapter" | "thesis"
+   year:   "2026"  (leave "" if unknown)
+   Optional fields:
+     pdf:"https://..."            adds a PDF link
+     status:"Accepted"            small blue badge
+     award:"Best Paper Award"     small red badge
+     note:"Q1, IF 12.9"           shown after the venue
+
+   Your name is bolded automatically.
+   Papers appear in the order you list them, within each type.
+   ========================================================= */
+
+const PUBS = [
+  // Journals
+  { type:"journal", year:"", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens", title:"ForecastExplainer: Explainable household energy demand forecasting by approximating Shapley values using DeepLIFT", venue:"Technological Forecasting and Social Change, Elsevier", note:"Q1, IF 12.9" },
+  { type:"journal", year:"", authors:"D. Korus-Du, G. Stevens, A. Boden, L. Kuijer, A. K. Vavouris, Md Shajalal", title:"Heating in human–HVAC interaction for smart homes: An interdisciplinary overview", venue:"Building and Environment, Elsevier" },
+  { type:"journal", year:"", authors:"Chiara Tellarini, Md Shajalal, Nico Castelli, Martin Stein, Alexander Boden, Toke Haunstrup Christensen", title:"A mixed-method approach to study the impacts of energy micro-generation combined with appliance-level feedback on everyday practices", venue:"Energy Efficiency, Springer" },
+  { type:"journal", year:"", authors:"Md Shajalal, Milad Bohlouli, Hari Prasanna Das, Alexander Boden, Gunnar Stevens", title:"Improved thermal comfort model leveraging conditional tabular GAN focusing on feature selection", venue:"IEEE Access", note:"Q1, IF 3.9" },
+  { type:"journal", year:"", authors:"Md. Rezaul Karim, Tanhim Islam, Md Shajalal, Oya Beyan, Christoph Lange, Michael Cochez, Dietrich Rebholz-Schuhmann, Stefan Decker", title:"Explainable AI for bioinformatics: Methods, tools and applications", venue:"Briefings in Bioinformatics, Oxford University Press", note:"Q1, IF 13.99" },
+  { type:"journal", year:"", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens", title:"Explainable product backorder prediction exploiting CNN: Introducing explainable models in businesses", venue:"Electronic Markets, Springer Nature", note:"Q1, IF 8.5" },
+  { type:"journal", year:"", authors:"Md Shajalal, Petr Hajek, Mohammad Zoynul Abedin", title:"Product backorder prediction with deep neural networks on imbalanced data", venue:"International Journal of Production Research, Taylor & Francis", note:"Q1, IF 9.018" },
+  { type:"journal", year:"2021", authors:"Md Atabuzzaman, Md Shajalal, M. Elius Ahmed, Masud Ibn Afjal, Masaki Aono", title:"Leveraging grammatical roles for measuring semantic similarity between texts", venue:"IEEE Access", note:"Q1, IF 3.74" },
+  { type:"journal", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Coverage-based query subtopic diversification leveraging semantic relevance", venue:"Knowledge and Information Systems 62, pp. 2873–2891, Springer", note:"Q1, IF 2.39" },
+  { type:"journal", year:"2019", authors:"Md Shajalal, Masaki Aono", title:"Semantic textual similarity between sentences using bilingual word semantics", venue:"Progress in Artificial Intelligence 8(2), pp. 263–272, Springer", note:"Q1, IF 4.20" },
+
+  // Conferences
+  { type:"conference", year:"2026", status:"Accepted", authors:"Mahedi Hasan Riday, Md Shajalal, Gunnar Stevens", title:"Concept-level Shapley explanations: Construction, exact attribution, and cross-model replication", venue:"18th Asian Conference on Machine Learning (ACML 2026), Melbourne, Australia" },
+  { type:"conference", year:"2026", status:"Accepted", authors:"Md Shajalal, Gunnar Stevens", title:"TRACE: Human-centered explanations for audio deepfake detection via perceptual voice traits", venue:"International Conference on Explainable AI for Neural and Symbolic Methods (Explains 2026), Angers, France" },
+  { type:"conference", year:"2026", award:"Best Paper Award", authors:"Md Shajalal, Mahedi Hasan Riday, Sima Amirkhani, Gunnar Stevens", title:"Human-centered explanations for audio deepfakes: Making machine reasoning human-perceptible through voice traits", venue:"HCI International 2026, LNCS, pp. 172–191" },
+  { type:"conference", year:"2026", authors:"Sidra Naveed, Md Shajalal, Gunnar Stevens", title:"From algorithmic transparency to human sensemaking: User perceptions of word-highlighting-based explanations for fake review detection", venue:"HCI International 2026, LNCS, pp. 142–160" },
+  { type:"conference", year:"2025", authors:"Maksuda Bilkis Baby, Md Atabuzzaman, Md Shajalal", title:"Attention-based code summarization for multi-label vulnerability detection in source code", venue:"24th International Conference on Cryptology and Network Security (CANS 2025), Osaka, Japan, LNCS" },
+  { type:"conference", year:"2025", authors:"Jacob Larock, Md Shajalal, Gunnar Stevens", title:"Interpretable deepfake voice detection: A hybrid deep-learning model and explanation evaluation", venue:"3rd World Conference on Explainable Artificial Intelligence (xAI 2025)" },
+  { type:"conference", year:"2025", authors:"Md Shajalal, Md Atabuzzaman, Alexander Boden, Gunnar Stevens, Delong Du", title:"Do the explanations make sense? Explainable fake review identification and users’ perspectives on explanations", venue:"3rd World Conference on Explainable Artificial Intelligence (xAI 2025)" },
+  { type:"conference", year:"2025", authors:"Shamima Rayhana, Md Shajalal, Md Atabuzzaman, Gunnar Stevens", title:"Interpretable sexism detection with explainable transformers", venue:"3rd World Conference on Explainable Artificial Intelligence (xAI 2025)" },
+  { type:"conference", year:"2024", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens, Delong Du, Dean-Robin Kern", title:"Explaining AI decisions: Towards achieving human-centered explainability in smart home environments", venue:"2nd World Conference on Explainable Artificial Intelligence (xAI 2024), Malta, Springer LNCS" },
+  { type:"conference", year:"2024", authors:"Md. Rezaul Karim, Comet, Md. Shajalal, P. de Perthuis, D. Rebholz-Schuhmann, Stefan Decker", title:"From large language models (LLMs) to knowledge graphs for biomarker discovery in cancer", venue:"57th Hawaii International Conference on System Sciences (HICSS-57), Hawaii, USA", note:"CORE A" },
+  { type:"conference", year:"2023", authors:"Md. Atabuzzaman, Md Shajalal, Maksuda Bilkis Baby, Alexander Boden", title:"Arabic sentiment analysis with noisy deep explainable model", venue:"7th International Conference on Natural Language Processing and Information Retrieval (ACM NLPIR 2023), Seoul, South Korea", note:"Equal contribution" },
+  { type:"conference", year:"2023", authors:"Md. Rezaul Karim, Md. Shajalal, Alex Graß, Till Döhmen, Sisay Adugna Chala, Christian Beecks, Stefan Decker", title:"Interpreting black-box machine learning models for high dimensional datasets", venue:"10th IEEE International Conference on Data Science and Advanced Analytics (IEEE DSAA 2023), Thessaloniki, Greece", note:"CORE A" },
+  { type:"conference", year:"2023", authors:"Md Atabuzzaman, Maksuda Bilkis Baby, Md Shajalal", title:"Transformer-based Bengali textual emotion recognition", venue:"20th International Conference on Natural Language Processing (ICON 2023), ACL Anthology, India" },
+  { type:"conference", year:"2023", authors:"Md Shajalal, Sebastian Denef, Md. Rezaul Karim, Alexander Boden, Gunnar Stevens", title:"Unveiling the black box: Explainable deep learning models for patent classification", venue:"1st World Conference on Explainable Artificial Intelligence (xAI 2023), Lisbon, Portugal, Springer LNCS" },
+  { type:"conference", year:"2023", authors:"Dean-Robin Kern, Gunnar Stevens, Erik Dethier, Sidra Naveed, Fatemeh Alizadeh, Delong Du, Md Shajalal", title:"Peeking inside the Schufa blackbox: Explaining the German housing scoring system", venue:"ACM CHI 2023 Workshop on Human-Centered Explainable AI (HCXAI), Hamburg, Germany" },
+  { type:"conference", year:"2022", authors:"Md Shajalal, Milad Bohlouli, Hari Prasanna Das, Alexander Boden, Gunnar Stevens", title:"Focus on what matters: Improved feature selection techniques for personal thermal comfort modelling", venue:"9th ACM International Conference on Systems for Energy-Efficient Built Environments (ACM BuildSys 2022), Boston, USA" },
+  { type:"conference", year:"2022", authors:"Md Shajalal, Md. Atabuzzaman, Maksuda Bilkis Baby, Md Rezaul Karim, Alexander Boden", title:"Textual entailment recognition with semantic features from empirical text representation", venue:"International Conference on Speech and Language Technologies (SPELLL 2022), Tamil Nadu, India" },
+  { type:"conference", year:"2022", authors:"Md Rezaul Karim, Sumon Kanti Dey, Tanhim Islam, Md Shajalal, Bharathi Raja Chakravarthi", title:"Multimodal hate speech detection from Bengali memes and texts", venue:"International Conference on Speech and Language Technologies (SPELLL 2022), Tamil Nadu, India" },
+  { type:"conference", year:"2022", authors:"Maksuda Bilkis Baby, Bushra Ankhari, Md Shajalal, Md Atabuzzaman, Fazle Rabbi, Masud Ibn Afjal", title:"Identifying duplicate questions leveraging recurrent neural network", venue:"4th International Conference on Trends in Computational and Cognitive Engineering (TCCE 2022)" },
+  { type:"conference", year:"2022", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens", title:"Towards user-centered explainable energy demand forecasting systems", venue:"13th ACM International Conference on Future Energy Systems (ACM e-Energy 2022), USA" },
+  { type:"conference", year:"2022", authors:"Lu Jin, Alexander Boden, Md Shajalal", title:"Automated decision making systems in smart homes: A study on user engagement and design", venue:"ACM CHI 2022 Workshop AutomationXP22: Engaging with Automation, New Orleans, USA" },
+  { type:"conference", year:"2021", authors:"Md Atabuzzaman, Md Shajalal, Masaki Aono", title:"Semantic representation of sentences employing an automated threshold", venue:"10th IEEE International Conference on Informatics, Electronics and Vision (IEEE ICIEV 2021), Japan" },
+  { type:"conference", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Semantic sentence modeling for learning textual similarity exploiting LSTM", venue:"2nd International Conference on Cyber Security and Computer Science (ICONCS 2020), Springer LNICST" },
+  { type:"conference", year:"2020", authors:"Md Atabuzzaman, Md Shajalal", title:"Measuring semantic similarity of Bengali texts with parts-of-speech tags and word-level semantics", venue:"23rd IEEE International Conference on Computer and Information Technology (IEEE ICCIT 2020), Dhaka" },
+  { type:"conference", year:"2020", authors:"Md Elius Ahmed, Md Shajalal, Md. Atabuzzaman, Masaki Aono", title:"Semantic similarity based on word recurrence ratio focusing on WordNet", venue:"23rd IEEE International Conference on Computer and Information Technology (IEEE ICCIT 2020), Dhaka" },
+  { type:"conference", year:"2018", authors:"Md Shajalal, Masaki Aono", title:"Sentence-level semantic textual similarity using word-level semantics", venue:"10th IEEE International Conference on Electrical and Computer Engineering (IEEE ICECE 2018), BUET, Dhaka, pp. 113–116" },
+  { type:"conference", year:"2018", authors:"Md Shajalal, Masaki Aono", title:"Semantic textual similarity in Bengali text", venue:"IEEE International Conference on Bangla Speech and Language Processing (IEEE ICBSLP 2018), SUST, Sylhet" },
+  { type:"conference", year:"2018", authors:"Md Shajalal, Masaki Aono, Muhammad Anwarul Azim", title:"Aspect-based query expansion for search results diversification", venue:"7th IEEE ICIEV and 2nd icIVPR 2018, Kitakyushu, Japan, pp. 147–152" },
+  { type:"conference", year:"2016", award:"Best Presentation Award", authors:"Md Zia Ullah, Md Shajalal, Abu Nowshed Chy, Masaki Aono", title:"Query subtopic mining exploiting word embedding for search result diversification", venue:"Asia Information Retrieval Symposium (AIRS 2016), LNCS, pp. 308–314, Springer" },
+  { type:"conference", year:"2016", authors:"Md Shajalal, Md Zia Ullah, Abu Nowshed Chy, Masaki Aono", title:"Query subtopic diversification based on cluster ranking and semantic features", venue:"IEEE International Conference on Advanced Informatics: Concepts, Theory and Application (IEEE ICAICTA 2016), Penang, Malaysia, pp. 1–6" },
+  { type:"conference", year:"2016", authors:"Md Zia Ullah, Md Shajalal, Masaki Aono", title:"KDEIM at NTCIR-12 IMine-2 search intent mining task: Query understanding through diversified ranking of subtopics", venue:"Proceedings of NTCIR-12, NII, pp. 60–63" },
+  { type:"conference", year:"2016", authors:"Abu Nowshed Chy, Md Zia Ullah, Md Shajalal, Masaki Aono", title:"KDETM at NTCIR-12 Temporalia task: Combining a rule-based classifier with weakly supervised learning for temporal intent disambiguation", venue:"Proceedings of NTCIR-12, NII, pp. 281–284" },
+
+  // Book chapters
+  { type:"chapter", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Health information retrieval", venue:"Signal Processing Techniques for Computational Health Informatics, Springer Nature" },
+  { type:"chapter", year:"", authors:"Md Shajalal, Mohammad Zoynul Abedin", title:"Handling class imbalanced data in business domain", venue:"The Essentials of Machine Learning in Finance and Accounting, Routledge, Taylor & Francis" },
+
+  // Theses
+  { type:"thesis", year:"2025", authors:"Md Shajalal", title:"Towards human-centered actionable explainable AI-enabled systems", venue:"PhD dissertation, University of Siegen, Germany" },
+  { type:"thesis", year:"2017", authors:"Md Shajalal", title:"Mining and diversifying query subtopics from web documents focusing on semantic features", venue:"Master of Engineering thesis, Toyohashi University of Technology, Japan. Supervisor: Prof. Masaki Aono" },
+  { type:"thesis", year:"", authors:"Md Shajalal", title:"Mining query subtopics for search result diversification", venue:"Research progress report, Toyohashi University of Technology, Japan. Supervisor: Prof. Masaki Aono" }
+];
