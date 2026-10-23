@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Md Shajalal, PhD | Explainable AI Researcher</title>
+<meta name="description" content="Md Shajalal, PhD: postdoctoral researcher at the University of Siegen working on human-centered explainable AI, audio deepfake detection, NLP and information retrieval.">
+<meta property="og:title" content="Md Shajalal, PhD">
+<meta property="og:description" content="Human-centered explainable AI, audio deepfake detection, NLP and information retrieval.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F7FA; --surface:#FFFFFF; --ink:#172033; --muted:#5A6478; --line:#DCE1EA;
+  --pos:#2B4ACB; --neg:#C93C55; --pos-soft:#E6EBFB; --neg-soft:#F9E6EA;
+  --serif:"Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --sans:"Public Sans", "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --wrap:1080px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0E1320; --surface:#151B2B; --ink:#E5E9F2; --muted:#9AA4B8; --line:#273046;
+    --pos:#8FA6FF; --neg:#F0788C; --pos-soft:#1C2645; --neg-soft:#3A1E28;
+    color-scheme: dark;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:var(--pos);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--pos);outline-offset:3px;border-radius:2px}
+img{max-width:100%}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+
+/* Header */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  padding-top:env(safe-area-inset-top,0px)}
+header.top .wrap{display:flex;align-items:center;gap:24px;height:60px}
+.brand{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--ink);text-decoration:none;white-space:nowrap}
+nav.sections{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+nav.sections::-webkit-scrollbar{display:none}
+nav.sections a{color:var(--muted);text-decoration:none;font-size:15px;padding:6px 10px;border-radius:6px;white-space:nowrap}
+nav.sections a:hover,nav.sections a.active{color:var(--ink);background:var(--pos-soft)}
+@media (max-width:720px){
+  header.top .wrap{flex-direction:column;align-items:stretch;height:auto;gap:0;padding-top:10px}
+  nav.sections{margin:0 -24px;padding:6px 18px 8px}
+  html{scroll-padding-top:100px}
+}
+
+/* Hero */
+.hero{padding:72px 0 0}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:start}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(44px,7vw,80px);line-height:1.02;letter-spacing:-0.02em;margin:0 0 20px}
+.hero h1 .deg{font-size:.42em;color:var(--muted);font-weight:400;letter-spacing:0;vertical-align:.9em;margin-left:.2em}
+.roles{list-style:none;padding:0;margin:0 0 24px;max-width:60ch}
+.roles li{margin:0 0 6px}
+.roles strong{font-weight:600}
+.roles span{color:var(--muted)}
+.profile-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:15px}
+.portrait{width:200px;height:240px;border-radius:4px;overflow:hidden;background:var(--pos-soft);display:grid;place-items:center;border:1px solid var(--line)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .mono{font-family:var(--serif);font-size:72px;color:var(--pos);font-weight:500}
+@media (max-width:720px){
+  .hero{padding-top:40px}
+  .hero-grid{grid-template-columns:1fr}
+  .portrait{width:120px;height:144px;order:-1}
+  .portrait .mono{font-size:44px}
+}
+
+/* Attribution waveform */
+.wave{margin:48px 0 0;position:relative}
+.wave svg{display:block;width:100%;height:150px}
+.wave rect{transform-box:fill-box;transform-origin:50% 100%}
+.wave rect.down{transform-origin:50% 0%}
+.wave figcaption{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:14px;color:var(--muted);padding:12px 0 0;border-top:1px solid var(--line);margin-top:-1px}
+.key{display:inline-flex;align-items:center;gap:8px}
+.key i{width:10px;height:10px;border-radius:2px;display:inline-block}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.wave.animate rect{animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+@media (prefers-reduced-motion: reduce){.wave.animate rect{animation:none}}
+
+/* Sections */
+section.block{padding:80px 0 0}
+.sec-head{display:grid;grid-template-columns:220px 1fr;gap:40px;margin-bottom:28px;align-items:baseline}
+.sec-head h2{font-family:var(--serif);font-weight:500;font-size:34px;line-height:1.15;margin:0}
+.sec-head p{margin:0;color:var(--muted);max-width:62ch}
+.sec-body{display:grid;grid-template-columns:220px 1fr;gap:40px}
+.sec-body > .main{min-width:0}
+.sec-body > .side{color:var(--muted);font-size:15px}
+@media (max-width:860px){
+  .sec-head,.sec-body{grid-template-columns:1fr;gap:12px}
+  section.block{padding-top:56px}
+}
+.prose p{max-width:68ch;margin:0 0 1em}
+h3{font-family:var(--serif);font-weight:500;font-size:23px;margin:36px 0 14px}
+h3:first-child{margin-top:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.chips li{font-size:14px;padding:5px 12px;border-radius:999px;background:var(--pos-soft);color:var(--ink)}
+
+/* Dated lists: news, publications, timeline */
+.dated{list-style:none;margin:0;padding:0}
+.dated > li{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--line)}
+.dated > li:last-child{border-bottom:1px solid var(--line)}
+.dated .when{font-size:14px;color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.dated .what p{margin:0}
+.dated .what .sub{color:var(--muted);font-size:15px;margin-top:4px}
+@media (max-width:520px){.dated > li{grid-template-columns:1fr;gap:4px}}
+.more-btn{margin-top:16px}
+
+.badge{display:inline-block;font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;vertical-align:2px;margin-left:6px;white-space:nowrap}
+.badge.award{background:var(--neg-soft);color:var(--neg)}
+.badge.status{background:var(--pos-soft);color:var(--pos)}
+.inline-links{display:inline-flex;gap:12px;margin-left:8px;font-size:14px}
+
+/* Publications */
+.pub-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:12px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+button{font:inherit;cursor:pointer}
+.tab,.more-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:6px;font-size:15px}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tab .n{color:inherit;opacity:.65;margin-left:4px;font-variant-numeric:tabular-nums}
+.search{flex:1 1 220px;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 12px;border-radius:6px;font:inherit;font-size:15px}
+.pub .title{font-family:var(--serif);font-size:19px;line-height:1.35;font-weight:500}
+.pub .authors{font-size:15px;margin-top:4px}
+.pub .authors strong{font-weight:600}
+.pub .venue{color:var(--muted);font-size:15px;font-style:italic}
+.pub .note{color:var(--muted);font-size:13.5px;font-style:normal}
+.empty{color:var(--muted);padding:20px 0}
+
+/* Projects */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px 36px}
+.project h4{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 6px}
+.project p{margin:0;font-size:15.5px;color:var(--muted)}
+.project .status{font-size:13px;font-weight:600;color:var(--pos);margin-bottom:4px}
+.project.past .status{color:var(--muted)}
+
+/* Two column lists */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px}
+@media (max-width:640px){.cols{grid-template-columns:1fr}}
+.plain{list-style:none;padding:0;margin:0}
+.plain li{padding:10px 0;border-top:1px solid var(--line)}
+.plain li .sub{display:block;color:var(--muted);font-size:14.5px}
+
+.callout{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--pos);padding:20px 24px;border-radius:4px}
+.callout p{margin:0 0 .8em;max-width:68ch}
+.callout p:last-child{margin-bottom:0}
+
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.contact-grid .label{color:var(--muted);font-size:14px}
+.contact-grid a{font-size:18px}
+
+footer{margin-top:96px;border-top:1px solid var(--line);padding:24px 0 40px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Md Shajalal</a>
+    <nav class="sections" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#experience">Experience</a>
+      <a href="#awards">Awards</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#service">Service</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>Md Shajalal<span class="deg">PhD</span></h1>
+          <ul class="roles">
+            <li><strong>Postdoctoral Research Fellow</strong>, IT Security and Consumer Computing, <span>University of Siegen, Germany</span></li>
+            <li><strong>Assistant Professor</strong> (on leave), Department of CSE, <span>HSTU, Bangladesh</span></li>
+            <li><strong>Former Marie Skłodowska-Curie Research Fellow</strong>, <span>Fraunhofer FIT, Sankt Augustin, Germany</span></li>
+          </ul>
+          <div class="profile-links" id="profileLinks"></div>
+        </div>
+        <div class="portrait" id="portrait" aria-hidden="true"><span class="mono">MS</span></div>
+      </div>
+
+      <figure class="wave" id="wave">
+        <svg id="waveSvg" viewBox="0 0 1000 150" preserveAspectRatio="none" role="img" aria-label="Decorative waveform drawn as feature attributions"></svg>
+        <figcaption>
+          <span>An audio waveform drawn as feature attributions, where my two research threads meet.</span>
+          <span class="key"><i style="background:var(--pos)"></i>supports the prediction</span>
+          <span class="key"><i style="background:var(--neg)"></i>argues against it</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2>About</h2></div>
+      <div class="sec-body">
+        <div class="side">
+          <ul class="plain">
+            <li>PhD, Summa Cum Laude<span class="sub">University of Siegen, 2025</span></li>
+            <li>IHK Best Dissertation Award<span class="sub">2025</span></li>
+            <li>M.Eng., MEXT Scholar<span class="sub">Toyohashi University of Technology, 2017</span></li>
+          </ul>
+        </div>
+        <div class="main prose">
+          <p>I am a postdoctoral researcher in IT Security and Consumer Computing at the University of Siegen, Germany. My current work focuses on human-centered explainable artificial intelligence (XAI) across several domains, including audio deepfake detection, smart homes and natural language processing.</p>
+          <p>My PhD thesis, <em>Towards Human-Centered Actionable Explainable AI-enabled Systems</em>, was awarded Summa Cum Laude (highest distinction) at the University of Siegen. I carried out this research as a Marie Skłodowska-Curie Fellow (MSCA ITN) at Fraunhofer FIT, Germany.</p>
+          <p>Before joining Fraunhofer FIT, I was a faculty member in the Department of Computer Science and Engineering at HSTU, Bangladesh. I completed my master’s degree in Computer Science at Toyohashi University of Technology, Japan, under the MEXT scholarship, with a thesis on identifying diverse query intents for ambiguous and under-specified search queries. I have also taught at Bangladesh Agricultural University and Bangladesh Army University of Science and Technology, and worked for a year as a software engineer.</p>
+          <p>My research interests lie in explainable AI, information retrieval and natural language processing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="news">
+    <div class="wrap">
+      <div class="sec-head"><h2>Latest news</h2></div>
+      <div class="sec-body">
+        <div class="side"></div>
+        <div class="main">
+          <ul class="dated" id="newsList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="research">
+    <div class="wrap">
+      <div class="sec-head"><h2>Research</h2><p>Making machine reasoning understandable and actionable for the people who rely on it.</p></div>
+      <div class="sec-body">
+        <div class="side">Research interests</div>
+        <div class="main">
+          <ul class="chips">
+            <li>Explainable AI (XAI)</li>
+            <li>Human-centered AI</li>
+            <li>Natural language processing</li>
+            <li>Information retrieval</li>
+            <li>Applied machine and deep learning</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Projects</div>
+        <div class="main"><div class="projects" id="projectList"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="publications">
+    <div class="wrap">
+      <div class="sec-head"><h2>Publications</h2><p id="pubProfiles">Full lists are also on my academic profiles.</p></div>
+      <div class="sec-body">
+        <div class="side"></div>
+        <div class="main">
+          <div class="pub-tools">
+            <div class="tabs" role="group" aria-label="Filter publications by type" id="pubTabs"></div>
+            <label class="sr" for="pubSearch">Search publications</label>
+            <input class="search" id="pubSearch" type="search" placeholder="Search titles, authors or venues">
+          </div>
+          <ul class="dated" id="pubList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><h2>Experience</h2></div>
+      <div class="sec-body">
+        <div class="side">Professional</div>
+        <div class="main"><ul class="dated" id="expList"></ul></div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Education</div>
+        <div class="main"><ul class="dated" id="eduList"></ul></div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Languages</div>
+        <div class="main">
+          <ul class="plain cols">
+            <li>Bangla<span class="sub">Native</span></li>
+            <li>English<span class="sub">Fluent</span></li>
+            <li>German<span class="sub">B2, upper intermediate</span></li>
+            <li>Japanese<span class="sub">Basic speaking and listening</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="awards">
+    <div class="wrap">
+      <div class="sec-head"><h2>Awards and scholarships</h2></div>
+      <div class="sec-body">
+        <div class="side">Awards</div>
+        <div class="main"><ul class="dated" id="awardList"></ul></div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Scholarships</div>
+        <div class="main"><ul class="plain" id="scholarList"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="teaching">
+    <div class="wrap">
+      <div class="sec-head"><h2>Teaching</h2></div>
+      <div class="sec-body">
+        <div class="side">Courses taught</div>
+        <div class="main"><ul class="plain cols" id="courseList"></ul></div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Supervised students</div>
+        <div class="main"><ul class="plain cols" id="studentList"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="service">
+    <div class="wrap">
+      <div class="sec-head"><h2>Service and talks</h2></div>
+      <div class="sec-body">
+        <div class="side">Program committees</div>
+        <div class="main"><ul class="plain" id="pcList"></ul></div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Reviewing</div>
+        <div class="main"><ul class="plain cols" id="reviewList"></ul></div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Talks and presentations</div>
+        <div class="main"><ul class="plain" id="talkList"></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="resources">
+    <div class="wrap">
+      <div class="sec-head"><h2>Resources</h2></div>
+      <div class="sec-body">
+        <div class="side">Dataset</div>
+        <div class="main">
+          <div class="callout">
+            <h3 style="margin-top:0">Bengali Semantic Textual Similarity (STS) dataset</h3>
+            <p>Measuring textual similarity is central to many retrieval and NLP applications, including summarization, machine translation, plagiarism detection, sentiment analysis, relevance feedback and subtopic mining.</p>
+            <p><strong>Task.</strong> Given two Bengali sentences, a method returns a continuous similarity score from 0 to 5, where 0 means the sentences are semantically independent and 5 means they are equivalent. Performance is measured by the Pearson correlation between system scores and human judgments.</p>
+            <p>Details are in our paper <em>Semantic Textual Similarity in Bengali Text</em> (IEEE ICBSLP 2018). If you use this dataset, please cite it.<span id="stsLinks"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="sec-body" style="margin-top:40px">
+        <div class="side">Reading and data</div>
+        <div class="main" id="resourceGroups"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="sec-head"><h2>Contact</h2><p>I’m happy to hear about collaborations, student projects and speaking invitations.</p></div>
+      <div class="sec-body">
+        <div class="side"></div>
+        <div class="main contact-grid">
+          <div><div class="label">University of Siegen</div><a href="mailto:md.shajalal@uni-siegen.de">md.shajalal@uni-siegen.de</a></div>
+          <div><div class="label">HSTU, Bangladesh</div><a href="mailto:shajalal@hstu.ac.bd">shajalal@hstu.ac.bd</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Md Shajalal</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   EDIT HERE: your links.
+   Paste a full URL between the quotes. Anything left empty
+   is simply hidden on the page.
+   ========================================================= */
+const PROFILE = {
+  photo:   "",   // e.g. "photo.jpg" (upload the image next to index.html)
+  cv:      "",   // e.g. "Md_Shajalal_CV.pdf"
+  scholar: "",   // Google Scholar profile URL
+  scopus:  "",
+  wos:     "",   // Web of Science
+  dblp:    "",
+  orcid:   "",
+  stsDataset: "",  // Bengali STS dataset download
+  stsPaper:   ""   // paper link for the dataset
+};
+
+/* ---------- News: add new items at the top ---------- */
+const NEWS = [
+  { date:"Sep 2026", text:"Our paper <em>Concept-Level Shapley Explanations: Construction, Exact Attribution, and Cross-Model Replication</em> was accepted at ACML 2026 in Melbourne, Australia." },
+  { date:"Aug 2026", text:"Our paper <em>TRACE: Human-Centered Explanations for Audio Deepfake Detection via Perceptual Voice Traits</em> was accepted at Explains 2026, the International Conference on Explainable AI for Neural and Symbolic Methods, in Angers, France." },
+  { date:"Aug 2026", text:"Our research project on trustworthy and explainable detection of synthetic media for safety-critical decision-making was accepted for funding by NRW EFRE DEFENCE. The consortium includes the University of Siegen, Anymate.me, Open.INC and ASEW." },
+  { date:"Jul 2026", text:"Our paper <em>Human-Centered Explanations for Audio Deepfakes: Making Machine Reasoning Human-Perceptible Through Voice Traits</em> received the Best Paper Award in the Artificial Intelligence in HCI category at HCI International 2026 in Montréal, Canada.", award:true,
+    links:[{label:"Photo 1",url:""},{label:"Photo 2",url:""},{label:"Video",url:""}] },
+  { date:"Jul 2026", text:"Two of our papers on human-centric actionable explanations were published at the 28th International Conference on Human-Computer Interaction (HCI International 2026).",
+    links:[{label:"Paper 1",url:""},{label:"Paper 2",url:""}] },
+  { date:"Jun 2026", text:"The University of Siegen highlighted the research outcomes of the AntiScam project, which I coordinate.", links:[{label:"Article",url:""}] },
+  { date:"May 2026", text:"My research was featured by the University of Siegen and published through Informationsdienst Wissenschaft (idw), one of Germany’s leading science news platforms.",
+    links:[{label:"English",url:""},{label:"German",url:""}] },
+  { date:"Apr 2026", text:"I gave an invited talk, <em>Explainable and Trustworthy AI in Cybersecurity</em>, at the IT Security MINDS conference 2026 at Althoff Grandhotel Schloss Bensberg, Cologne." }
+];
+
+/* ---------- Projects ---------- */
+const PROJECTS = [
+  { now:true, title:"XAI in smart domestic technology", text:"Applying explainable AI to smart home technology with a focus on user preferences. We are currently developing an energy-aware, human-centric energy recommender system." },
+  { now:true, title:"Thermal comfort preference prediction", text:"Personal thermal comfort matters for occupants’ well-being, health and productivity. We predict occupants’ thermal preferences in smart homes from physiological and environmental variables, so that AI-controlled heating can adjust indoor conditions automatically." },
+  { now:true, title:"Community question answering and retrieval", text:"Retrieving and ranking answers in community question answering platforms." },
+  { now:false, title:"Search result diversification", text:"Ignoring the information needs behind a query can misguide a search engine. This project diversified search results using coverage-based subtopic modeling, selecting documents that cover as many search intents as possible." },
+  { now:false, title:"Query subtopic mining", text:"Search queries are often short, ambiguous and open to several interpretations. This project mined and diversified the subtopics that specialize or disambiguate a query’s intent." },
+  { now:false, title:"Semantic textual similarity", text:"Lexical measures can’t capture similarity beyond a surface level. This project used deep learning to estimate the semantic similarity between sentences." },
+  { now:false, title:"NTCIR shared tasks", text:"Participation in NTCIR-12 IMine-2 (subtopic mining for user queries) and the NTCIR-13 WWW ad hoc web search task (English)." }
+];
+
+/* ---------- Publications ----------
+   type: "journal" | "conference" | "chapter" | "thesis"
+   Optional: pdf:"https://...", status:"Accepted", award:"Best Paper Award", note:"Q1, IF 12.9"
+*/
+const PUBS = [
+  // Journals
+  { type:"journal", year:"", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens", title:"ForecastExplainer: Explainable household energy demand forecasting by approximating Shapley values using DeepLIFT", venue:"Technological Forecasting and Social Change, Elsevier", note:"Q1, IF 12.9" },
+  { type:"journal", year:"", authors:"D. Korus-Du, G. Stevens, A. Boden, L. Kuijer, A. K. Vavouris, Md Shajalal", title:"Heating in human–HVAC interaction for smart homes: An interdisciplinary overview", venue:"Building and Environment, Elsevier" },
+  { type:"journal", year:"", authors:"Chiara Tellarini, Md Shajalal, Nico Castelli, Martin Stein, Alexander Boden, Toke Haunstrup Christensen", title:"A mixed-method approach to study the impacts of energy micro-generation combined with appliance-level feedback on everyday practices", venue:"Energy Efficiency, Springer" },
+  { type:"journal", year:"", authors:"Md Shajalal, Milad Bohlouli, Hari Prasanna Das, Alexander Boden, Gunnar Stevens", title:"Improved thermal comfort model leveraging conditional tabular GAN focusing on feature selection", venue:"IEEE Access", note:"Q1, IF 3.9" },
+  { type:"journal", year:"", authors:"Md. Rezaul Karim, Tanhim Islam, Md Shajalal, Oya Beyan, Christoph Lange, Michael Cochez, Dietrich Rebholz-Schuhmann, Stefan Decker", title:"Explainable AI for bioinformatics: Methods, tools and applications", venue:"Briefings in Bioinformatics, Oxford University Press", note:"Q1, IF 13.99" },
+  { type:"journal", year:"", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens", title:"Explainable product backorder prediction exploiting CNN: Introducing explainable models in businesses", venue:"Electronic Markets, Springer Nature", note:"Q1, IF 8.5" },
+  { type:"journal", year:"", authors:"Md Shajalal, Petr Hajek, Mohammad Zoynul Abedin", title:"Product backorder prediction with deep neural networks on imbalanced data", venue:"International Journal of Production Research, Taylor & Francis", note:"Q1, IF 9.018" },
+  { type:"journal", year:"2021", authors:"Md Atabuzzaman, Md Shajalal, M. Elius Ahmed, Masud Ibn Afjal, Masaki Aono", title:"Leveraging grammatical roles for measuring semantic similarity between texts", venue:"IEEE Access", note:"Q1, IF 3.74" },
+  { type:"journal", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Coverage-based query subtopic diversification leveraging semantic relevance", venue:"Knowledge and Information Systems 62, pp. 2873–2891, Springer", note:"Q1, IF 2.39" },
+  { type:"journal", year:"2019", authors:"Md Shajalal, Masaki Aono", title:"Semantic textual similarity between sentences using bilingual word semantics", venue:"Progress in Artificial Intelligence 8(2), pp. 263–272, Springer", note:"Q1, IF 4.20" },
+
+  // Conferences
+  { type:"conference", year:"2026", status:"Accepted", authors:"Mahedi Hasan Riday, Md Shajalal, Gunnar Stevens", title:"Concept-level Shapley explanations: Construction, exact attribution, and cross-model replication", venue:"18th Asian Conference on Machine Learning (ACML 2026), Melbourne, Australia" },
+  { type:"conference", year:"2026", status:"Accepted", authors:"Md Shajalal, Gunnar Stevens", title:"TRACE: Human-centered explanations for audio deepfake detection via perceptual voice traits", venue:"International Conference on Explainable AI for Neural and Symbolic Methods (Explains 2026), Angers, France" },
+  { type:"conference", year:"2026", award:"Best Paper Award", authors:"Md Shajalal, Mahedi Hasan Riday, Sima Amirkhani, Gunnar Stevens", title:"Human-centered explanations for audio deepfakes: Making machine reasoning human-perceptible through voice traits", venue:"HCI International 2026, LNCS, pp. 172–191" },
+  { type:"conference", year:"2026", authors:"Sidra Naveed, Md Shajalal, Gunnar Stevens", title:"From algorithmic transparency to human sensemaking: User perceptions of word-highlighting-based explanations for fake review detection", venue:"HCI International 2026, LNCS, pp. 142–160" },
+  { type:"conference", year:"2025", authors:"Maksuda Bilkis Baby, Md Atabuzzaman, Md Shajalal", title:"Attention-based code summarization for multi-label vulnerability detection in source code", venue:"24th International Conference on Cryptology and Network Security (CANS 2025), Osaka, Japan, LNCS" },
+  { type:"conference", year:"2025", authors:"Jacob Larock, Md Shajalal, Gunnar Stevens", title:"Interpretable deepfake voice detection: A hybrid deep-learning model and explanation evaluation", venue:"3rd World Conference on Explainable Artificial Intelligence (xAI 2025)" },
+  { type:"conference", year:"2025", authors:"Md Shajalal, Md Atabuzzaman, Alexander Boden, Gunnar Stevens, Delong Du", title:"Do the explanations make sense? Explainable fake review identification and users’ perspectives on explanations", venue:"3rd World Conference on Explainable Artificial Intelligence (xAI 2025)" },
+  { type:"conference", year:"2025", authors:"Shamima Rayhana, Md Shajalal, Md Atabuzzaman, Gunnar Stevens", title:"Interpretable sexism detection with explainable transformers", venue:"3rd World Conference on Explainable Artificial Intelligence (xAI 2025)" },
+  { type:"conference", year:"2024", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens, Delong Du, Dean-Robin Kern", title:"Explaining AI decisions: Towards achieving human-centered explainability in smart home environments", venue:"2nd World Conference on Explainable Artificial Intelligence (xAI 2024), Malta, Springer LNCS" },
+  { type:"conference", year:"2024", authors:"Md. Rezaul Karim, Comet, Md. Shajalal, P. de Perthuis, D. Rebholz-Schuhmann, Stefan Decker", title:"From large language models (LLMs) to knowledge graphs for biomarker discovery in cancer", venue:"57th Hawaii International Conference on System Sciences (HICSS-57), Hawaii, USA", note:"CORE A" },
+  { type:"conference", year:"2023", authors:"Md. Atabuzzaman, Md Shajalal, Maksuda Bilkis Baby, Alexander Boden", title:"Arabic sentiment analysis with noisy deep explainable model", venue:"7th International Conference on Natural Language Processing and Information Retrieval (ACM NLPIR 2023), Seoul, South Korea", note:"Equal contribution" },
+  { type:"conference", year:"2023", authors:"Md. Rezaul Karim, Md. Shajalal, Alex Graß, Till Döhmen, Sisay Adugna Chala, Christian Beecks, Stefan Decker", title:"Interpreting black-box machine learning models for high dimensional datasets", venue:"10th IEEE International Conference on Data Science and Advanced Analytics (IEEE DSAA 2023), Thessaloniki, Greece", note:"CORE A" },
+  { type:"conference", year:"2023", authors:"Md Atabuzzaman, Maksuda Bilkis Baby, Md Shajalal", title:"Transformer-based Bengali textual emotion recognition", venue:"20th International Conference on Natural Language Processing (ICON 2023), ACL Anthology, India" },
+  { type:"conference", year:"2023", authors:"Md Shajalal, Sebastian Denef, Md. Rezaul Karim, Alexander Boden, Gunnar Stevens", title:"Unveiling the black box: Explainable deep learning models for patent classification", venue:"1st World Conference on Explainable Artificial Intelligence (xAI 2023), Lisbon, Portugal, Springer LNCS" },
+  { type:"conference", year:"2023", authors:"Dean-Robin Kern, Gunnar Stevens, Erik Dethier, Sidra Naveed, Fatemeh Alizadeh, Delong Du, Md Shajalal", title:"Peeking inside the Schufa blackbox: Explaining the German housing scoring system", venue:"ACM CHI 2023 Workshop on Human-Centered Explainable AI (HCXAI), Hamburg, Germany" },
+  { type:"conference", year:"2022", authors:"Md Shajalal, Milad Bohlouli, Hari Prasanna Das, Alexander Boden, Gunnar Stevens", title:"Focus on what matters: Improved feature selection techniques for personal thermal comfort modelling", venue:"9th ACM International Conference on Systems for Energy-Efficient Built Environments (ACM BuildSys 2022), Boston, USA" },
+  { type:"conference", year:"2022", authors:"Md Shajalal, Md. Atabuzzaman, Maksuda Bilkis Baby, Md Rezaul Karim, Alexander Boden", title:"Textual entailment recognition with semantic features from empirical text representation", venue:"International Conference on Speech and Language Technologies (SPELLL 2022), Tamil Nadu, India" },
+  { type:"conference", year:"2022", authors:"Md Rezaul Karim, Sumon Kanti Dey, Tanhim Islam, Md Shajalal, Bharathi Raja Chakravarthi", title:"Multimodal hate speech detection from Bengali memes and texts", venue:"International Conference on Speech and Language Technologies (SPELLL 2022), Tamil Nadu, India" },
+  { type:"conference", year:"2022", authors:"Maksuda Bilkis Baby, Bushra Ankhari, Md Shajalal, Md Atabuzzaman, Fazle Rabbi, Masud Ibn Afjal", title:"Identifying duplicate questions leveraging recurrent neural network", venue:"4th International Conference on Trends in Computational and Cognitive Engineering (TCCE 2022)" },
+  { type:"conference", year:"2022", authors:"Md Shajalal, Alexander Boden, Gunnar Stevens", title:"Towards user-centered explainable energy demand forecasting systems", venue:"13th ACM International Conference on Future Energy Systems (ACM e-Energy 2022), USA" },
+  { type:"conference", year:"2022", authors:"Lu Jin, Alexander Boden, Md Shajalal", title:"Automated decision making systems in smart homes: A study on user engagement and design", venue:"ACM CHI 2022 Workshop AutomationXP22: Engaging with Automation, New Orleans, USA" },
+  { type:"conference", year:"2021", authors:"Md Atabuzzaman, Md Shajalal, Masaki Aono", title:"Semantic representation of sentences employing an automated threshold", venue:"10th IEEE International Conference on Informatics, Electronics and Vision (IEEE ICIEV 2021), Japan" },
+  { type:"conference", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Semantic sentence modeling for learning textual similarity exploiting LSTM", venue:"2nd International Conference on Cyber Security and Computer Science (ICONCS 2020), Springer LNICST" },
+  { type:"conference", year:"2020", authors:"Md Atabuzzaman, Md Shajalal", title:"Measuring semantic similarity of Bengali texts with parts-of-speech tags and word-level semantics", venue:"23rd IEEE International Conference on Computer and Information Technology (IEEE ICCIT 2020), Dhaka" },
+  { type:"conference", year:"2020", authors:"Md Elius Ahmed, Md Shajalal, Md. Atabuzzaman, Masaki Aono", title:"Semantic similarity based on word recurrence ratio focusing on WordNet", venue:"23rd IEEE International Conference on Computer and Information Technology (IEEE ICCIT 2020), Dhaka" },
+  { type:"conference", year:"2018", authors:"Md Shajalal, Masaki Aono", title:"Sentence-level semantic textual similarity using word-level semantics", venue:"10th IEEE International Conference on Electrical and Computer Engineering (IEEE ICECE 2018), BUET, Dhaka, pp. 113–116" },
+  { type:"conference", year:"2018", authors:"Md Shajalal, Masaki Aono", title:"Semantic textual similarity in Bengali text", venue:"IEEE International Conference on Bangla Speech and Language Processing (IEEE ICBSLP 2018), SUST, Sylhet" },
+  { type:"conference", year:"2018", authors:"Md Shajalal, Masaki Aono, Muhammad Anwarul Azim", title:"Aspect-based query expansion for search results diversification", venue:"7th IEEE ICIEV and 2nd icIVPR 2018, Kitakyushu, Japan, pp. 147–152" },
+  { type:"conference", year:"2016", award:"Best Presentation Award", authors:"Md Zia Ullah, Md Shajalal, Abu Nowshed Chy, Masaki Aono", title:"Query subtopic mining exploiting word embedding for search result diversification", venue:"Asia Information Retrieval Symposium (AIRS 2016), LNCS, pp. 308–314, Springer" },
+  { type:"conference", year:"2016", authors:"Md Shajalal, Md Zia Ullah, Abu Nowshed Chy, Masaki Aono", title:"Query subtopic diversification based on cluster ranking and semantic features", venue:"IEEE International Conference on Advanced Informatics: Concepts, Theory and Application (IEEE ICAICTA 2016), Penang, Malaysia, pp. 1–6" },
+  { type:"conference", year:"2016", authors:"Md Zia Ullah, Md Shajalal, Masaki Aono", title:"KDEIM at NTCIR-12 IMine-2 search intent mining task: Query understanding through diversified ranking of subtopics", venue:"Proceedings of NTCIR-12, NII, pp. 60–63" },
+  { type:"conference", year:"2016", authors:"Abu Nowshed Chy, Md Zia Ullah, Md Shajalal, Masaki Aono", title:"KDETM at NTCIR-12 Temporalia task: Combining a rule-based classifier with weakly supervised learning for temporal intent disambiguation", venue:"Proceedings of NTCIR-12, NII, pp. 281–284" },
+
+  // Book chapters
+  { type:"chapter", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Health information retrieval", venue:"Signal Processing Techniques for Computational Health Informatics, Springer Nature" },
+  { type:"chapter", year:"", authors:"Md Shajalal, Mohammad Zoynul Abedin", title:"Handling class imbalanced data in business domain", venue:"The Essentials of Machine Learning in Finance and Accounting, Routledge, Taylor & Francis" },
+
+  // Theses
+  { type:"thesis", year:"2025", authors:"Md Shajalal", title:"Towards human-centered actionable explainable AI-enabled systems", venue:"PhD dissertation, University of Siegen, Germany" },
+  { type:"thesis", year:"2017", authors:"Md Shajalal", title:"Mining and diversifying query subtopics from web documents focusing on semantic features", venue:"Master of Engineering thesis, Toyohashi University of Technology, Japan. Supervisor: Prof. Masaki Aono" },
+  { type:"thesis", year:"", authors:"Md Shajalal", title:"Mining query subtopics for search result diversification", venue:"Research progress report, Toyohashi University of Technology, Japan. Supervisor: Prof. Masaki Aono" }
+];
+
+/* ---------- Experience & education ---------- */
+const EXPERIENCE = [
+  { when:"2025–now", title:"Postdoctoral Research Fellow", org:"IT Security and Consumer Computing, University of Siegen, Germany" },
+  { when:"2021–2024", title:"Marie Skłodowska-Curie Research Fellow", org:"Fraunhofer FIT, Sankt Augustin, Germany" },
+  { when:"2021–now", title:"Assistant Professor (on study leave)", org:"Department of Computer Science and Engineering, Hajee Mohammad Danesh Science and Technology University (HSTU), Bangladesh" },
+  { when:"2019–2021", title:"Lecturer", org:"Department of Computer Science and Engineering, HSTU, Bangladesh" },
+  { when:"2018–2019", title:"Lecturer", org:"Department of Computer Science and Mathematics, Bangladesh Agricultural University" },
+  { when:"2017–2018", title:"Lecturer", org:"Department of Computer Science and Engineering, Bangladesh Army University of Science and Technology (BAUST)" },
+  { when:"2015–2017", title:"Teaching and Research Assistant", org:"Knowledge Data Engineering and Information Retrieval Lab, Toyohashi University of Technology, Japan" },
+  { when:"2015", title:"Software Engineer", org:"Kona Software Lab Limited, Dhaka, Bangladesh (Kona I, South Korea)" },
+  { when:"2014–2015", title:"Junior Software Engineer", org:"Bit Mascot Private Limited, Dhaka, Bangladesh" }
+];
+const EDUCATION = [
+  { when:"2025", title:"PhD in Explainable AI, Summa Cum Laude", org:"Fraunhofer FIT and University of Siegen, Germany. IHK Best Dissertation Award 2025" },
+  { when:"2023", title:"Visiting PhD Student", org:"University of Strathclyde, Glasgow, UK. Hosts: Prof. Lina Stankovic and Prof. Vladimir Stankovic" },
+  { when:"2017", title:"Master of Engineering, Computer Science and Engineering", org:"Toyohashi University of Technology, Japan. CGPA 4.00. Supervisor: Prof. Masaki Aono" },
+  { when:"2015", title:"B.Sc. (Engg.) in Computer Science and Engineering", org:"University of Chittagong, Bangladesh. CGPA 3.84 of 4.00, 2nd in graduating class" }
+];
+
+/* ---------- Awards ---------- */
+const AWARDS = [
+  { when:"2026", title:"Best Paper Award, AI in HCI category", org:"HCI International 2026, Montréal, Canada" },
+  { when:"2025", title:"IHK Best Dissertation Award", org:"For the PhD dissertation in explainable AI" },
+  { when:"2016", title:"Best Presentation Award", org:"12th Asia Information Retrieval Societies Conference (AIRS 2016), Beijing, China" },
+  { when:"2013", title:"Divisional Champion", org:"ACM ICPC Dhaka Regional Programming Contest, North South University" },
+  { when:"2012", title:"First Runner-up", org:"DUITS 1st Inter-University Project Showcase (University Result Processing System)" },
+  { when:"2011", title:"Honorable Mention", org:"ACM ICPC Dhaka Regional Programming Contest, North South University" }
+];
+const SCHOLARSHIPS = [
+  { title:"Marie Skłodowska-Curie Fellowship", org:"European Commission. PhD in explainable AI at Fraunhofer FIT, Sankt Augustin, Germany" },
+  { title:"Marie Skłodowska-Curie Fellowship (not taken up)", org:"European Commission. PhD in distributed storage systems at Universitat Politècnica de Catalunya, Spain, and Athena Research Center, Greece" },
+  { title:"MEXT (Monbukagakusho) Scholarship", org:"Japanese Ministry of Education. Master’s program at Toyohashi University of Technology, 2015–2017" },
+  { title:"University Merit Scholarship", org:"University of Chittagong, 2009–2011" }
+];
+
+/* ---------- Teaching ---------- */
+const COURSES = [
+  ["Software Engineering","B.Sc. Computer Science, HSTU"],
+  ["Web Engineering","B.Sc. Computer Science, HSTU"],
+  ["Web Engineering Project","B.Sc. Computer Science, BAUST"],
+  ["Object Oriented Programming","B.Sc. Computer Science, BAUST"],
+  ["Technical Writing and Presentation","B.Sc. Computer Science, BAUST"],
+  ["Computer Networks","B.Sc. Computer Science, BAUST"],
+  ["Neural Networks","M.Sc. Computer Science, BAU"],
+  ["Computer Programming Language II","B.Sc. Physics, HSTU"],
+  ["Computer Programming II","B.Sc. Food Processing, HSTU"],
+  ["Introduction to Computer Science","B.Sc. Agriculture, HSTU"],
+  ["Computer Applications","B.Sc. Agriculture, BAU"]
+];
+const STUDENTS = [
+  ["Yassine Adahi","Master’s thesis"],["Raihaan Rafiq","Master’s thesis"],["Amey","Master’s thesis"],
+  ["Iftekhar","Bachelor’s thesis"],["Naima Nodi","Bachelor’s thesis"],["Jacob Larock","Bachelor’s thesis"],
+  ["Shamima Rayhana","Undergraduate thesis"],["Maksuda Bilkis","Undergraduate thesis"],["Bushra Ankhari","Undergraduate thesis"],
+  ["Md Atabuzzaman Babu","Undergraduate thesis"],["Md Elius Ahmed Miraz","Undergraduate thesis"],["Amrita Dash Gupta","Undergraduate thesis"],
+  ["Taukir Ahmed","Undergraduate thesis"]
+];
+
+/* ---------- Service & talks ---------- */
+const PC = [
+  ["Human-centric AI: From Explainability and Trustworthiness to Actionable Ethics","Workshop co-located with ACM CIKM 2025, Seoul, South Korea"],
+  ["3rd World Conference on Explainable Artificial Intelligence (xAI 2025)","Istanbul, Turkey"],
+  ["2nd World Conference on Explainable Artificial Intelligence (xAI 2024)","Malta"],
+  ["40th ACM/SIGAPP Symposium on Applied Computing (ACM SAC 2025)","Tracks: Smart Cities and Critical Infrastructures; Machine Learning and its Applications"],
+  ["39th ACM/SIGAPP Symposium on Applied Computing (ACM SAC 2024)",""],
+  ["10th International Conference on Behavioral and Social Computing (BESC 2023)","Larnaca, Cyprus"],
+  ["IEEE ICAICT",""]
+];
+const REVIEWS = [
+  ["ACM CHI 2026","Barcelona"],["IEEE Transactions on Artificial Intelligence",""],["IEEE Transactions on Fuzzy Systems","Q1"],
+  ["Technological Forecasting and Social Change","Elsevier, Q1"],["Decision Support Systems","Elsevier, Q1"],["Knowledge and Information Systems","Springer, Q1"],
+  ["International Journal of Information Technology & Decision Making","World Scientific, Q1"],["Progress in Artificial Intelligence","Springer"],
+  ["Concurrency and Computation: Practice and Experience","Wiley"],["Expert Systems","Wiley"],["Asia-Pacific Journal of Operational Research","World Scientific"],
+  ["IEEE Access",""],["HICSS 2023","Hawaii, USA"],["ECML PKDD 2023","Grenoble, France"],["IEEE ECCE Conference",""]
+];
+const TALKS = [
+  { title:"Invited talk: Explainable and Trustworthy AI in Cybersecurity", where:"IT Security MINDS 2026, Schloss Bensberg, Cologne" },
+  { title:"Lecture: The Building Blocks of Neural Networks and Explainability", where:"Two-hour talk at a summer school organized by Bonn-Rhein-Sieg University of Applied Sciences, Germany, for participants from universities across several countries" },
+  { title:"IEEE DSAA 2023", where:"Thessaloniki, Greece, October 2023" },
+  { title:"1st World Conference on Explainable AI (xAI 2023)", where:"Lisbon, Portugal, July 2023" },
+  { title:"SPELLL 2022", where:"India", slides:"" },
+  { title:"ACM BuildSys 2022", where:"Boston, USA", slides:"" },
+  { title:"ACM e-Energy 2022", where:"USA", slides:"" },
+  { title:"ICONCS 2020", where:"Bangladesh", slides:"" },
+  { title:"IEEE ICECE 2018", where:"BUET, Bangladesh", slides:"" },
+  { title:"IEEE ICBSLP 2018", where:"SUST, Bangladesh", slides:"" },
+  { title:"IEEE ICAICTA 2016", where:"Penang, Malaysia", slides:"" },
+  { title:"NTCIR-12: IMine-2 and Temporalia", where:"National Institute of Informatics, Tokyo, Japan", slides:"" }
+];
+
+/* ---------- Resources: add a url to make any item a link ---------- */
+const RESOURCES = [
+  { group:"Information retrieval", items:[
+    {name:"Information retrieval resources, Stanford University",url:""},
+    {name:"Resources from ACM SIGIR",url:""},
+    {name:"Information retrieval resources, University of Maryland",url:""},
+    {name:"Text REtrieval Conference (TREC)",url:""},
+    {name:"NII test collections for IR systems (NTCIR)",url:""} ]},
+  { group:"Web search, ad hoc and diversified", items:[
+    {name:"TREC Web Track guidelines and data, 2009–2013",url:""},
+    {name:"ClueWeb09 document collection",url:""},
+    {name:"ClueWeb12 document collection",url:""},
+    {name:"NTCIR-13 WWW",url:""} ]},
+  { group:"Diversified subtopic mining", items:[
+    {name:"NTCIR-10 INTENT",url:""},{name:"NTCIR-11 IMine-1",url:""},{name:"NTCIR-12 IMine-2",url:""} ]},
+  { group:"Natural language processing", items:[
+    {name:"Natural language processing with deep learning",url:""},
+    {name:"NLP tasks and selected references",url:""},
+    {name:"Deep learning applications for NLP",url:""},
+    {name:"CNNs for natural language processing",url:""},
+    {name:"NLTK corpora",url:""} ]},
+  { group:"Sentiment analysis", items:[
+    {name:"Sentiment classification datasets: Treebank, IMDB",url:""},
+    {name:"A Practical Guide to Sentiment Analysis (book)",url:""} ]},
+  { group:"Writing", items:[
+    {name:"Advice on research and writing, Carnegie Mellon University",url:""} ]}
+];
+
+/* =========================================================
+   Rendering. You shouldn’t need to edit below this line.
+   ========================================================= */
+const $ = (id) => document.getElementById(id);
+const link = (url, label) => url ? `<a href="${url}" target="_blank" rel="noopener">${label}</a>` : "";
+const boldMe = (s) => s.replace(/Md\.? Shajalal/g, m => `<strong>${m}</strong>`);
+
+// Profile links
+(function(){
+  const items = [
+    [PROFILE.cv,"Résumé (PDF)"],[PROFILE.scholar,"Google Scholar"],[PROFILE.scopus,"Scopus"],
+    [PROFILE.wos,"Web of Science"],[PROFILE.dblp,"DBLP"],[PROFILE.orcid,"ORCID"]
+  ].filter(x => x[0]);
+  const html = [`<a href="mailto:md.shajalal@uni-siegen.de">md.shajalal@uni-siegen.de</a>`]
+    .concat(items.map(([u,l]) => link(u,l))).join("");
+  $("profileLinks").innerHTML = html;
+  const profiles = items.filter(x => x[1] !== "Résumé (PDF)").map(([u,l]) => link(u,l));
+  $("pubProfiles").innerHTML = profiles.length
+    ? "Full lists are also on " + profiles.join(", ").replace(/, ([^,]*)$/, " and $1") + "."
+    : "Selected journal articles, conference papers, chapters and theses.";
+  if (PROFILE.photo) $("portrait").innerHTML = `<img src="${PROFILE.photo}" alt="Portrait of Md Shajalal">`;
+  if (PROFILE.stsDataset || PROFILE.stsPaper)
+    $("stsLinks").innerHTML = `<span class="inline-links">${link(PROFILE.stsDataset,"Download dataset")}${link(PROFILE.stsPaper,"Read the paper")}</span>`;
+})();
+
+// News, show 5 then expand
+(function(){
+  const render = (all) => {
+    const list = all ? NEWS : NEWS.slice(0,5);
+    $("newsList").innerHTML = list.map(n => {
+      const links = (n.links||[]).filter(l => l.url).map(l => link(l.url,l.label)).join("");
+      return `<li><div class="when">${n.date}</div><div class="what"><p>${n.text}${n.award?'<span class="badge award">Award</span>':''}${links?`<span class="inline-links">${links}</span>`:''}</p></div></li>`;
+    }).join("");
+  };
+  render(false);
+  if (NEWS.length > 5){
+    const b = document.createElement("button");
+    b.className = "more-btn"; b.textContent = `Show all ${NEWS.length} news items`;
+    b.setAttribute("aria-expanded","false");
+    b.onclick = () => { const open = b.getAttribute("aria-expanded")==="true";
+      render(!open); b.setAttribute("aria-expanded", String(!open));
+      b.textContent = open ? `Show all ${NEWS.length} news items` : "Show fewer"; };
+    $("newsList").after(b);
+  }
+})();
+
+// Projects
+$("projectList").innerHTML = PROJECTS.map(p =>
+  `<div class="project ${p.now?'':'past'}"><div class="status">${p.now?'Current':'Previous'}</div><h4>${p.title}</h4><p>${p.text}</p></div>`).join("");
+
+// Publications
+(function(){
+  const types = [["all","All"],["journal","Journals"],["conference","Conferences"],["chapter","Book chapters"],["thesis","Theses"]];
+  let current = "all", q = "";
+  const count = t => t==="all" ? PUBS.length : PUBS.filter(p => p.type===t).length;
+  $("pubTabs").innerHTML = types.map(([k,l]) =>
+    `<button class="tab" data-type="${k}" aria-pressed="${k==='all'}">${l}<span class="n">${count(k)}</span></button>`).join("");
+  const render = () => {
+    const needle = q.trim().toLowerCase();
+    const list = PUBS.filter(p => (current==="all"||p.type===current) &&
+      (!needle || (p.title+" "+p.authors+" "+p.venue).toLowerCase().includes(needle)));
+    if (!list.length){ $("pubList").innerHTML = `<li class="empty" style="display:block">No publications match “${q.replace(/</g,"&lt;")}”. Try a different word, or choose All.</li>`; return; }
+    $("pubList").innerHTML = list.map(p => {
+      const badges = (p.award?`<span class="badge award">${p.award}</span>`:"") + (p.status?`<span class="badge status">${p.status}</span>`:"");
+      return `<li class="pub"><div class="when">${p.year || ""}</div><div class="what">
+        <div class="title">${p.title}${badges}</div>
+        <div class="authors">${boldMe(p.authors)}</div>
+        <div class="venue">${p.venue}${p.note?` <span class="note">(${p.note})</span>`:""}${p.pdf?`<span class="inline-links">${link(p.pdf,"PDF")}</span>`:""}</div>
+      </div></li>`;
+    }).join("");
+  };
+  $("pubTabs").addEventListener("click", e => {
+    const b = e.target.closest(".tab"); if (!b) return;
+    current = b.dataset.type;
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", String(t===b)));
+    render();
+  });
+  $("pubSearch").addEventListener("input", e => { q = e.target.value; render(); });
+  render();
+})();
+
+// Timelines
+const timeline = (arr) => arr.map(x => `<li><div class="when">${x.when}</div><div class="what"><p><strong>${x.title}</strong></p><p class="sub">${x.org}</p></div></li>`).join("");
+$("expList").innerHTML = timeline(EXPERIENCE);
+$("eduList").innerHTML = timeline(EDUCATION);
+$("awardList").innerHTML = timeline(AWARDS);
+$("scholarList").innerHTML = SCHOLARSHIPS.map(s => `<li><strong>${s.title}</strong><span class="sub">${s.org}</span></li>`).join("");
+const pairs = (arr) => arr.map(([a,b]) => `<li>${a}${b?`<span class="sub">${b}</span>`:""}</li>`).join("");
+$("courseList").innerHTML = pairs(COURSES);
+$("studentList").innerHTML = pairs(STUDENTS);
+$("pcList").innerHTML = pairs(PC);
+$("reviewList").innerHTML = pairs(REVIEWS);
+$("talkList").innerHTML = TALKS.map(t => `<li>${t.title}${t.slides?`<span class="inline-links">${link(t.slides,"Slides")}</span>`:""}<span class="sub">${t.where}</span></li>`).join("");
+$("resourceGroups").innerHTML = RESOURCES.map(g =>
+  `<h3>${g.group}</h3><ul class="plain">${g.items.map(i => `<li>${i.url?link(i.url,i.name):i.name}</li>`).join("")}</ul>`).join("");
+
+// Attribution waveform (deterministic, so it looks the same on every visit)
+(function(){
+  const svg = $("waveSvg"), N = 120, W = 1000, H = 150, mid = 96, gap = 2;
+  const bw = W / N - gap;
+  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  let out = `<line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="var(--line)" stroke-width="1"/>`;
+  for (let i = 0; i < N; i++){
+    const t = i / N;
+    const env = 0.25 + 0.75 * Math.pow(Math.sin(Math.PI * t), 1.4) * (0.6 + 0.4 * Math.sin(t * 19));
+    const mag = Math.max(0.06, Math.abs(env) * (0.45 + 0.55 * rnd()));
+    const positive = Math.sin(t * 23 + 1.3) + (rnd() - 0.5) * 0.9 > -0.35;
+    const x = i * (bw + gap);
+    const delay = (i * 7).toFixed(0);
+    if (positive){
+      const h = mag * (mid - 6);
+      out += `<rect x="${x.toFixed(2)}" y="${(mid - h).toFixed(2)}" width="${bw.toFixed(2)}" height="${h.toFixed(2)}" rx="1" fill="var(--pos)" style="animation-delay:${delay}ms"/>`;
+    } else {
+      const h = mag * (H - mid - 4);
+      out += `<rect class="down" x="${x.toFixed(2)}" y="${mid}" width="${bw.toFixed(2)}" height="${h.toFixed(2)}" rx="1" fill="var(--neg)" style="animation-delay:${delay}ms"/>`;
+    }
+  }
+  svg.innerHTML = out;
+  $("wave").classList.add("animate");
+})();
+
+// Highlight the current section in the nav
+(function(){
+  const links = [...document.querySelectorAll("nav.sections a")];
+  const map = new Map(links.map(a => [a.getAttribute("href").slice(1), a]));
+  if (!("IntersectionObserver" in window)) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting){
+      links.forEach(l => l.classList.remove("active"));
+      const a = map.get(en.target.id); if (a){ a.classList.add("active"); a.scrollIntoView({block:"nearest",inline:"nearest"}); }
+    }});
+  }, { rootMargin:"-45% 0px -50% 0px" });
+  document.querySelectorAll("section.block").forEach(s => obs.observe(s));
+})();
+
+$("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
