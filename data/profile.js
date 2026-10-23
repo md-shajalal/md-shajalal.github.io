@@ -12,12 +12,12 @@ const PROFILE = {
   emails:   ["md.shajalal@uni-siegen.de", "shajalal@hstu.ac.bd"],
 
   photo:   "data/photo.jpeg",   // e.g. "images/photo.jpeg"
-  cv:      "",   // e.g. "files/Md_Shajalal_CV.pdf"
-  scholar: "",   // Google Scholar profile URL
+  cv:      "data/Dr_Md_Shajalal_Resume.pdf",   // e.g. "files/Md_Shajalal_CV.pdf"
+  scholar: "https://scholar.google.co.jp/citations?hl=en&user=3yLkKWMAAAAJ&view_op=list_works&sortby=pubdate",   // Google Scholar profile URL
   orcid:   "",
   scopus:  "",
-  wos:     "",   // Web of Science
-  dblp:    "",
+  wos:     "https://www.webofscience.com/wos/author/record/1983074",   // Web of Science
+  dblp:    "https://dblp.uni-trier.de/pers/hd/s/Shajalal:Md",
   linkedin:"",
   github:  ""
 };
