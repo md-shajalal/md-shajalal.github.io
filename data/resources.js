@@ -1,7 +1,7 @@
 /* =========================================================
    RESOURCES
    Add url:"https://..." to make any item a clickable link.
-   ========================================================= */
+   ========================================================= 
 
 const DATASET = {
   title: "Bengali Semantic Textual Similarity (STS) dataset",
@@ -13,6 +13,7 @@ const DATASET = {
   datasetUrl: "https://drive.google.com/file/d/1o6B01zSv_k20S8nkeiXFlC1cZJuPfgdV/view?usp=sharing",
   paperUrl:   "https://ieeexplore.ieee.org/document/8554940"
 };
+*/
 
 const RESOURCES = [
   { group:"Information retrieval", items:[
