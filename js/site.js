@@ -139,7 +139,8 @@ const SECTION_DEFS = {
   teaching: { menu:"Teaching", render(){
     const C = get("COURSES", []), S = get("STUDENTS", []);
     if (!C.length && !S.length) return null;
-    return `<h2>Teaching</h2>${C.length?`<h3>Courses taught</h3><ul class="plain cols">${pairs(C)}</ul>`:""}
+    const N = get("TEACHING_NOTE", "");
+    return `<h2>Teaching</h2>${N?`<div class="prose"><p>${N}</p></div>`:""}${C.length?`<h3>Courses taught</h3><ul class="plain cols">${pairs(C)}</ul>`:""}
       ${S.length?`<h3>Supervised students</h3><ul class="plain cols">${pairs(S)}</ul>`:""}`;
   }},
   service: { menu:"Service", render(){
