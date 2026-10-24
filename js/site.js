@@ -88,7 +88,20 @@ const SECTION_DEFS = {
       </div>
       <ul class="dated" id="pubList"></ul>`;
   }, init(){
-    const PUBS = get("PUBS", []);
+    // Sort: newest year first; within a year, journals, then conferences,
+    // then book chapters, then theses. Entries without a year go last.
+    // Within the same year and type, the order in publications.js is kept.
+    const TYPE_ORDER = { journal:0, conference:1, chapter:2, thesis:3 };
+    const PUBS = get("PUBS", [])
+      .map((p, i) => ({ p, i }))
+      .sort((a, b) => {
+        const ya = parseInt(a.p.year, 10) || 0, yb = parseInt(b.p.year, 10) || 0;
+        if (ya !== yb) return yb - ya;
+        const ta = TYPE_ORDER[a.p.type] ?? 9, tb = TYPE_ORDER[b.p.type] ?? 9;
+        if (ta !== tb) return ta - tb;
+        return a.i - b.i;
+      })
+      .map(x => x.p);
     const types = [["all","All"],["journal","Journals"],["conference","Conferences"],["chapter","Book chapters"],["thesis","Theses"]]
       .filter(([k]) => k === "all" || PUBS.some(p => p.type === k));
     let current = "all", q = "";
