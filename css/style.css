@@ -193,3 +193,43 @@ footer{border-top:1px solid var(--line);padding:22px 0 36px;color:var(--muted);f
    Colored with --year (set at the top of this file).
    ========================================================= */
 .dated .when{color:var(--year);font-weight:600}
+
+/* =========================================================
+   POLISH (October 2026)
+   Small refinements. Delete any rule to undo it.
+   ========================================================= */
+
+/* 1. Comfortable line length for reading on large screens */
+main > #content, main > footer{max-width:820px}
+
+/* 2. Section headings: short accent bar under the title */
+h2{position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:-1px;width:56px;height:3px;background:var(--accent);border-radius:2px}
+
+/* 3. Photo: soft shadow instead of a hard ring */
+.photo{border:0;box-shadow:0 8px 24px rgba(15,23,42,.12),0 0 0 1px var(--line)}
+
+/* 4. Sidebar: slightly tighter, better aligned contact list */
+.facts li{padding:5px 0}
+.facts svg{color:var(--accent);opacity:.75}
+.profile h1{letter-spacing:-0.01em}
+
+/* 5. PDF, Slides and other small links as neat pill buttons */
+.inline-links a{display:inline-block;font-size:12.5px;font-style:normal;font-weight:600;line-height:1.5;
+  padding:1px 9px;border:1px solid var(--line);border-radius:999px;text-decoration:none}
+.inline-links a:hover{background:var(--accent-soft);border-color:var(--accent-soft);text-decoration:none}
+
+/* 6. Publication entries: a little more breathing room */
+.pub{padding:16px 0 !important}
+.pub .title{font-size:17.5px}
+
+/* 7. Research projects as light cards */
+.project{background:var(--side);border-radius:6px;padding:18px 20px}
+.projects{gap:18px}
+
+/* 8. Interest chips: outlined, lighter look */
+.chips li{background:transparent;border:1px solid var(--line);color:var(--ink)}
+
+/* 9. Keep narrow text (cards, author lists, short details) left-aligned:
+      justifying short lines leaves big gaps between words */
+.project p, .pub .authors, .pub .venue, .plain li .sub, .dated .what .sub{text-align:left}
