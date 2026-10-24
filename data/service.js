@@ -31,6 +31,10 @@ const PC = [
 ];
 
 const REVIEWS = [
+  ["The 25th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2026) "],
+  ["AAAI2027: Association for the Advancement of Artificial Intelligence"],
+  ["IEEE Transactions on Pattern Analysis and Machine Intelligence"],
+  ["ACM Transactions on Interactive Intelligent Systems"],
   ["ACM CHI 2026", "Barcelona, Spain"],
   ["<a href=\"https://cis.ieee.org/publications/ieee-transactions-on-artificial-intelligence\">IEEE Transactions on Artificial Intelligence</a>", "IEEE"],
   ["<a href=\"https://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=91\">IEEE Transactions on Fuzzy Systems</a>", "IEEE, Q1"],
