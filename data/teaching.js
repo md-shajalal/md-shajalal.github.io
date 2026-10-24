@@ -1,9 +1,13 @@
 /* =========================================================
    TEACHING
-   Each line is ["Name", "Detail"].
+   TEACHING_NOTE is the short paragraph at the top of the section.
+   COURSES and STUDENTS lines are ["Name", "Detail"].
    ========================================================= */
 
+const TEACHING_NOTE = "At the University of Siegen, I teach the master’s course <strong>Human-Centered AI</strong> in Faculty III for students of Business Informatics (Wirtschaftsinformatik) and Human-Computer Interaction. I also regularly supervise master’s and bachelor’s theses and student projects in explainable and human-centered AI. Students interested in a thesis or project are welcome to <a href=\"mailto:md.shajalal@uni-siegen.de\">get in touch</a>.";
+
 const COURSES = [
+  ["Human-Centered AI (lecture)","M.Sc. Business Informatics and M.Sc. HCI, University of Siegen"],
   ["Software Engineering","B.Sc. Computer Science, HSTU"],
   ["Web Engineering","B.Sc. Computer Science, HSTU"],
   ["Web Engineering Project","B.Sc. Computer Science, BAUST"],
