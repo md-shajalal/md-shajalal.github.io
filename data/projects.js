@@ -13,7 +13,7 @@ const PROJECTS = [
 
   { now:true,
     title:"ASTRID: Trustworthy and explainable detection of synthetic media",
-    text:"A newly funded project. Deepfake images, video and audio increasingly reach people who must make safety-critical decisions. ASTRID develops detection methods for synthetic media that are reliable and explain their verdicts, so that decision-makers can judge when to trust them. <strong>Funding:</strong> NRW EFRE DEFENCE, funding accepted in August 2026. <strong>Partners:</strong> University of Siegen, <a href=\"http://anymate.me\">Anymate.me</a>, open.INC GmbH and ASEW." },
+    text:"A newly funded project. Deepfake images, video and audio increasingly reach people who must make safety-critical decisions. ASTRID develops detection methods for synthetic media that are reliable and explain their verdicts, so that decision-makers can judge when to trust them. <strong>Role:</strong> initiated the project idea and built the consortium. <strong>Funding:</strong> NRW EFRE DEFENCE, funding accepted in August 2026. <strong>Partners:</strong> University of Siegen, <a href=\"http://anymate.me\">Anymate.me</a>, open.INC GmbH and ASEW." },
 
   { now:false,
     title:"XAI in smart domestic technology",
