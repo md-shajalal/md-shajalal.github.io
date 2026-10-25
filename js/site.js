@@ -83,6 +83,8 @@ const SECTION_DEFS = {
     return `<h2>Publications</h2><p class="intro">${intro}</p>
       <div class="pub-tools">
         <div class="tabs" role="group" aria-label="Filter publications by type" id="pubTabs"></div>
+        <label class="sr" for="pubTopic">Filter by research topic</label>
+        <select class="topic" id="pubTopic"></select>
         <label class="sr" for="pubSearch">Search publications</label>
         <input class="search" id="pubSearch" type="search" placeholder="Search titles, authors or venues">
       </div>
@@ -104,15 +106,27 @@ const SECTION_DEFS = {
       .map(x => x.p);
     const types = [["all","All"],["journal","Journals"],["conference","Conferences"],["chapter","Book chapters"],["thesis","Theses"]]
       .filter(([k]) => k === "all" || PUBS.some(p => p.type === k));
-    let current = "all", q = "";
-    const count = t => t==="all" ? PUBS.length : PUBS.filter(p => p.type===t).length;
-    $("pubTabs").innerHTML = types.map(([k,l]) =>
-      `<button class="tab" data-type="${k}" aria-pressed="${k==='all'}">${l}<span class="n">${count(k)}</span></button>`).join("");
+    let current = "all", q = "", topic = "all";
+    const TOPICS = get("TOPICS", {});
+    const inTopic = p => topic === "all" || (p.topics || []).includes(topic);
+    const count = t => PUBS.filter(p => inTopic(p) && (t === "all" || p.type === t)).length;
+    const drawTabs = () => {
+      $("pubTabs").innerHTML = types.map(([k,l]) =>
+        `<button class="tab" data-type="${k}" aria-pressed="${k===current}">${l}<span class="n">${count(k)}</span></button>`).join("");
+    };
+    drawTabs();
+    const tkeys = Object.keys(TOPICS).filter(k => PUBS.some(p => (p.topics || []).includes(k)));
+    if (tkeys.length){
+      $("pubTopic").innerHTML = `<option value="all">All topics</option>` +
+        tkeys.map(k => `<option value="${k}">${TOPICS[k]} (${PUBS.filter(p => (p.topics||[]).includes(k)).length})</option>`).join("");
+    } else {
+      $("pubTopic").style.display = "none";
+    }
     const render = () => {
       const needle = q.trim().toLowerCase();
-      const list = PUBS.filter(p => (current==="all"||p.type===current) &&
+      const list = PUBS.filter(p => inTopic(p) && (current==="all"||p.type===current) &&
         (!needle || (p.title+" "+p.authors+" "+p.venue).toLowerCase().includes(needle)));
-      if (!list.length){ $("pubList").innerHTML = `<li class="empty" style="display:block">No publications match “${esc(q)}”. Try a different word, or choose All.</li>`; return; }
+      if (!list.length){ $("pubList").innerHTML = `<li class="empty" style="display:block">${q ? `No publications match “${esc(q)}”.` : "No publications in this combination."} Try a different word, topic or tab.</li>`; return; }
       $("pubList").innerHTML = list.map(p => {
         const badges = (p.award?`<span class="badge award">${p.award}</span>`:"") + (p.status?`<span class="badge status">${p.status}</span>`:"");
         return `<li class="pub"><div class="when">${p.year || ""}</div><div class="what">
@@ -128,6 +142,7 @@ const SECTION_DEFS = {
       document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", String(t===b)));
       render();
     });
+    $("pubTopic").addEventListener("change", e => { topic = e.target.value; drawTabs(); render(); });
     $("pubSearch").addEventListener("input", e => { q = e.target.value; render(); });
     render();
   }},
