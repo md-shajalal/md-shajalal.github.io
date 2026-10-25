@@ -104,12 +104,14 @@ const SECTION_DEFS = {
         return a.i - b.i;
       })
       .map(x => x.p);
-    const types = [["all","All"],["journal","Journals"],["conference","Conferences"],["chapter","Book chapters"],["thesis","Theses"]]
-      .filter(([k]) => k === "all" || PUBS.some(p => p.type === k));
-    let current = "all", q = "", topic = "all";
+    const hasSel = PUBS.some(p => p.selected);
+    const types = [["selected","Selected"],["all","All"],["journal","Journals"],["conference","Conferences"],["chapter","Book chapters"],["thesis","Theses"]]
+      .filter(([k]) => k === "all" || (k === "selected" ? hasSel : PUBS.some(p => p.type === k)));
+    let current = hasSel ? "selected" : "all", q = "", topic = "all";
+    const inTab = (p, t) => t === "all" || (t === "selected" ? !!p.selected : p.type === t);
     const TOPICS = get("TOPICS", {});
     const inTopic = p => topic === "all" || (p.topics || []).includes(topic);
-    const count = t => PUBS.filter(p => inTopic(p) && (t === "all" || p.type === t)).length;
+    const count = t => PUBS.filter(p => inTopic(p) && inTab(p, t)).length;
     const drawTabs = () => {
       $("pubTabs").innerHTML = types.map(([k,l]) =>
         `<button class="tab" data-type="${k}" aria-pressed="${k===current}">${l}<span class="n">${count(k)}</span></button>`).join("");
@@ -124,7 +126,7 @@ const SECTION_DEFS = {
     }
     const render = () => {
       const needle = q.trim().toLowerCase();
-      const list = PUBS.filter(p => inTopic(p) && (current==="all"||p.type===current) &&
+      const list = PUBS.filter(p => inTopic(p) && inTab(p, current) &&
         (!needle || (p.title+" "+p.authors+" "+p.venue).toLowerCase().includes(needle)));
       if (!list.length){ $("pubList").innerHTML = `<li class="empty" style="display:block">${q ? `No publications match “${esc(q)}”.` : "No publications in this combination."} Try a different word, topic or tab.</li>`; return; }
       $("pubList").innerHTML = list.map(p => {
@@ -143,8 +145,22 @@ const SECTION_DEFS = {
       render();
     });
     $("pubTopic").addEventListener("change", e => { topic = e.target.value; drawTabs(); render(); });
-    $("pubSearch").addEventListener("input", e => { q = e.target.value; render(); });
+    $("pubSearch").addEventListener("input", e => {
+      q = e.target.value;
+      // Searching from "Selected" looks through all publications
+      if (q.trim() && current === "selected"){ current = "all"; drawTabs(); }
+      render();
+    });
     render();
+    const more = document.createElement("button");
+    more.className = "more-btn"; more.id = "pubAll";
+    const syncMore = () => { more.style.display = current === "selected" ? "" : "none"; more.textContent = `Show all ${PUBS.length} publications`; };
+    more.onclick = () => { current = "all"; drawTabs(); render(); syncMore(); };
+    $("pubList").after(more);
+    $("pubTabs").addEventListener("click", syncMore);
+    $("pubTopic").addEventListener("change", syncMore);
+    $("pubSearch").addEventListener("input", syncMore);
+    syncMore();
   }},
   research: { menu:"Research", render(){
     const PR = get("PROJECTS", null); if (!PR) return null;
