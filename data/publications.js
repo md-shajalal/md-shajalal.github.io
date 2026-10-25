@@ -76,7 +76,7 @@ const PUBS = [
 
   // Book chapters
   { topics:["ir"], type:"chapter", year:"2020", authors:"Md Shajalal, Masaki Aono", title:"Health information retrieval", venue:"Signal Processing Techniques for Computational Health Informatics, Springer Nature", pdf:"https://link.springer.com/chapter/10.1007/978-3-030-54932-9_8" },
-  { topics:["ml"], type:"chapter", year:"", authors:"Md Shajalal, Mohammad Zoynul Abedin", title:"Handling class imbalanced data in business domain", venue:"The Essentials of Machine Learning in Finance and Accounting, Routledge, Taylor & Francis" },
+  { topics:["ml"], type:"chapter", year:"2021", authors:"Md Shajalal, Mohammad Zoynul Abedin", title:"Handling class imbalanced data in business domain", venue:"The Essentials of Machine Learning in Finance and Accounting, Routledge, Taylor & Francis" },
 
   // Theses
   { topics:["xai","hcai","ml"], type:"thesis", year:"2025", authors:"Md Shajalal", title:"Towards human-centered actionable explainable AI-enabled systems", venue:"PhD dissertation, University of Siegen, Germany", pdf:"https://dspace.ub.uni-siegen.de/bitstream/ubsi/2915/4/Dissertation_Md_Shajalal.pdf" },
