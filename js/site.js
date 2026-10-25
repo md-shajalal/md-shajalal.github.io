@@ -148,7 +148,13 @@ const SECTION_DEFS = {
   }},
   research: { menu:"Research", render(){
     const PR = get("PROJECTS", null); if (!PR) return null;
-    return `<h2>Research projects</h2><div class="projects">${PR.map(p =>
+    const F = get("FUNDING", []);
+    const fund = F.length ? `<h3>Third-party funding</h3><ul class="dated funding">${F.map(f => {
+      const name = f.url ? link(f.url, f.project) : f.project;
+      const facts = [f.volume, f.duration].filter(Boolean).join(", ");
+      return `<li><div class="when">${f.funder}</div><div class="what"><p><strong>${name}</strong>${facts ? ` <span class="amount">${facts}</span>` : ""}</p><p class="sub">${f.role}</p></div></li>`;
+    }).join("")}</ul><h3>Projects</h3>` : "";
+    return `<h2>Research projects</h2>${fund}<div class="projects">${PR.map(p =>
       `<div class="project ${p.now?'':'past'}"><div class="status">${p.now?'Current':'Previous'}</div><h4>${p.title}</h4><p>${p.text}</p></div>`).join("")}</div>`;
   }},
   experience: { menu:"Experience", render(){
