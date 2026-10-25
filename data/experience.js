@@ -16,7 +16,7 @@ const EXPERIENCE = [
 ];
 const EDUCATION = [
   { when:"2025", title:"PhD in Explainable AI, Summa Cum Laude", org:"Fraunhofer FIT and University of Siegen, Germany. IHK Best Dissertation Award 2025" },
-  { when:"2021–2024", title:"GECKO summer and winter schools (MSCA ITN)", org:"Six international doctoral training schools at KTH Royal Institute of Technology (Stockholm), National Technical University of Athens (NTUA), University of Strathclyde (Glasgow), Fraunhofer FIT (Sankt Augustin), University of Siegen and Aalborg University" },
+  { when:"2021–2024", title:"GECKO summer and winter schools (MSCA ITN)", org:"Five international doctoral training schools: Winter School 2021, University of Strathclyde, Glasgow; Summer School 2022, Fraunhofer FIT, Sankt Augustin; Winter School 2023, Aalborg University, Copenhagen; Summer School 2023, KTH Royal Institute of Technology, Stockholm; Winter School 2024, National Technical University of Athens" },
   { when:"2023", title:"Visiting PhD Student", org:"University of Strathclyde, Glasgow, UK. Hosts: Prof. Lina Stankovic and Prof. Vladimir Stankovic" },
   { when:"2017", title:"Master of Engineering, Computer Science and Engineering", org:"Toyohashi University of Technology, Japan. CGPA 4.00. Supervisor: Prof. Masaki Aono" },
   { when:"2015", title:"B.Sc. (Engg.) in Computer Science and Engineering", org:"University of Chittagong, Bangladesh. CGPA 3.84 of 4.00, 2nd in graduating class" }
