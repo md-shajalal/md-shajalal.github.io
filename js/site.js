@@ -154,8 +154,16 @@ const SECTION_DEFS = {
       const facts = [f.volume, f.duration].filter(Boolean).join(", ");
       return `<li><div class="when">${f.funder}</div><div class="what"><p><strong>${name}</strong>${facts ? ` <span class="amount">${facts}</span>` : ""}</p><p class="sub">${f.role}</p></div></li>`;
     }).join("")}</ul><h3>Projects</h3>` : "";
+    const ALLP = get("PUBS", []);
+    const related = (id) => !id ? [] : ALLP.filter(x => (x.projects || []).includes(id))
+      .sort((a, b) => (parseInt(b.year,10)||0) - (parseInt(a.year,10)||0));
+    const relBlock = (id) => {
+      const R = related(id); if (!R.length) return "";
+      return `<details class="related"><summary>Related publications <span class="n">${R.length}</span></summary><ul>${R.map(x =>
+        `<li><span class="ry">${x.year || ""}</span><span class="rt">${x.pdf ? link(x.pdf, x.title) : x.title}</span></li>`).join("")}</ul></details>`;
+    };
     return `<h2>Research projects</h2>${fund}<div class="projects">${PR.map(p =>
-      `<div class="project ${p.now?'':'past'}"><div class="status">${p.now?'Current':'Previous'}</div><h4>${p.title}</h4><p>${p.text}</p></div>`).join("")}</div>`;
+      `<div class="project ${p.now?'':'past'}"><div class="status">${p.now?'Current':'Previous'}</div><h4>${p.title}</h4><p>${p.text}</p>${relBlock(p.id)}</div>`).join("")}</div>`;
   }},
   experience: { menu:"Experience", render(){
     const E = get("EXPERIENCE", []);
