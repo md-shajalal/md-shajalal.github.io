@@ -152,10 +152,14 @@ const SECTION_DEFS = {
       `<div class="project ${p.now?'':'past'}"><div class="status">${p.now?'Current':'Previous'}</div><h4>${p.title}</h4><p>${p.text}</p></div>`).join("")}</div>`;
   }},
   experience: { menu:"Experience", render(){
-    const E = get("EXPERIENCE", []), ED = get("EDUCATION", []), LA = get("LANGUAGES", []);
-    if (!E.length && !ED.length) return null;
-    return `<h2>Experience</h2>${E.length?`<ul class="dated">${timeline(E)}</ul>`:""}
-      ${ED.length?`<h3>Education</h3><ul class="dated">${timeline(ED)}</ul>`:""}
+    const E = get("EXPERIENCE", []);
+    if (!E.length) return null;
+    return `<h2>Experience</h2><ul class="dated">${timeline(E)}</ul>`;
+  }},
+  education: { menu:"Education", render(){
+    const ED = get("EDUCATION", []), LA = get("LANGUAGES", []);
+    if (!ED.length && !LA.length) return null;
+    return `<h2>Education</h2>${ED.length?`<ul class="dated">${timeline(ED)}</ul>`:""}
       ${LA.length?`<h3>Languages</h3><ul class="plain cols">${pairs(LA)}</ul>`:""}`;
   }},
   awards: { menu:"Awards", render(){
@@ -190,6 +194,11 @@ const SECTION_DEFS = {
 };
 
 const order = get("SECTIONS", Object.keys(SECTION_DEFS)).filter(k => SECTION_DEFS[k]);
+// Older profile.js files don't list "education": show it right after Experience.
+if (!order.includes("education")){
+  const at = order.indexOf("experience");
+  order.splice(at >= 0 ? at + 1 : order.length, 0, "education");
+}
 const built = [];
 let html = "";
 order.forEach(key => {
