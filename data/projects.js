@@ -14,7 +14,7 @@ const FUNDING = [
   { project:"AntiScam", url:"https://antiscam-project.de/", funder:"BMFTR",
     role:"Project coordinator and research contributor", volume:"approx. €1.25M", duration:"3 years" },
   { project:"ASTRID", url:"", funder:"NRW-ERDF",
-    role:"Initiator, consortium builder and research contributor", volume:"approx. €1.45M", duration:"" },
+    role:"Initiator, consortium builder and research contributor", volume:"approx. €1.45M", duration:"2 years" },
   { project:"COPP", url:"", funder:"NRW-ERDF",
     role:"Proposal co-author and research contributor", volume:"approx. €3.3M", duration:"3 years" }
 ];
